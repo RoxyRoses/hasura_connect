@@ -15,4 +15,10 @@ void main() {
     expect(request, request);
     expect(request.copyWith() == request, true);
   });
+
+  test('request hashcode is equal to generatedHash', () {
+    final generatedHash =
+        request.url.hashCode ^ request.query.hashCode ^ request.type.hashCode;
+    expect(request.hashCode == generatedHash, isTrue);
+  });
 }
