@@ -34,4 +34,12 @@ void main() {
       throwsA(isA<ConnectionError>()),
     );
   });
+
+  test('Websocket Wrapper should Connect', () async {
+    when(() => wrapper.connect(any())).thenAnswer((_) async => websocket);
+    expect(
+      wrapper.connect('request: tRequest'),
+      isA<Future<WebSocket>>(),
+    );
+  });
 }
